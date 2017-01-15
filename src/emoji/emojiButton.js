@@ -34,7 +34,10 @@ export default class extends Component {
       `${e.target.innerHTML}`,
       editorState.getCurrentInlineStyle(),
     )
-    onChange(EditorState.push(editorState, contentState, 'insert-characters'))
+    const selection = editorState.getSelection()
+    if (selection.isCollapsed()) {
+      onChange(EditorState.push(editorState, contentState, 'insert-characters'))
+    }
     this.setState({ showModal: false })
   }
 
