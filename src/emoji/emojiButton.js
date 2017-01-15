@@ -26,7 +26,13 @@ export default class extends Component {
   }
 
   addEmoji (e) {
-    const { editorState, onChange, uploadImageCallBack } = this.props
+    const { editorState, onChange } = this.props
+
+    const selection = editorState.getSelection()
+    if (!selection.isCollapsed()) {
+      this.setState({ showModal: false })
+      return
+    }
 
     const contentState = Modifier.insertText(
       editorState.getCurrentContent(),
@@ -34,10 +40,8 @@ export default class extends Component {
       `${e.target.innerHTML}`,
       editorState.getCurrentInlineStyle(),
     )
-    const selection = editorState.getSelection()
-    if (selection.isCollapsed()) {
-      onChange(EditorState.push(editorState, contentState, 'insert-characters'))
-    }
+
+    onChange(EditorState.push(editorState, contentState, 'insert-characters'))
     this.setState({ showModal: false })
   }
 
