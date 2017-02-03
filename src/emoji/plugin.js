@@ -4,8 +4,8 @@
  * License: MIT
  */
 
-import emojiButton from './emoji/emojiButton'
-import emojiBlock from './emoji/emojiBlock'
+import emojiButton from './emojiButton'
+import emojiBlock from './emojiBlock'
 
 export default {
   type: 'emoji',

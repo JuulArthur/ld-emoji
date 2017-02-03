@@ -29,17 +29,23 @@ export default class extends Component {
     const { editorState, onChange } = this.props
 
     const selection = editorState.getSelection()
-    if (!selection.isCollapsed()) {
-      this.setState({ showModal: false })
-      return
+    let contentState = {}
+    if (selection.isCollapsed()) {
+      contentState = Modifier.insertText(
+        editorState.getCurrentContent(),
+        editorState.getSelection(),
+        `${e.target.innerHTML}`,
+        editorState.getCurrentInlineStyle(),
+      )
+    } else {
+      contentState = Modifier.replaceText(
+        editorState.getCurrentContent(),
+        editorState.getSelection(),
+        `${e.target.innerHTML}`,
+        editorState.getCurrentInlineStyle(),
+      )
     }
 
-    const contentState = Modifier.insertText(
-      editorState.getCurrentContent(),
-      editorState.getSelection(),
-      `${e.target.innerHTML}`,
-      editorState.getCurrentInlineStyle(),
-    )
 
     onChange(EditorState.push(editorState, contentState, 'insert-characters'))
     this.setState({ showModal: false })
@@ -127,6 +133,7 @@ const EmojiCloseIcon = styled.span`
   right: 0;
   top: 0;
   transform: scale(0.8);
+  color: black;
 `
 
 const EmojiIcon = styled.svg`

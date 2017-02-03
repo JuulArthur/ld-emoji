@@ -5,21 +5,13 @@
  */
 
 import React, {Component} from 'react'
-import Block from '../block/Block'
+import { EditorBlock } from 'draft-js'
 
-/*
-  TODO: This is just a placeholder as emoji doesn't add a block it adds inline text
-  Should be refactored so plugins doesn't have to supply a block. Or push this out of plugins?
-*/
+/* TODO: This is just a placeholder as emoji doesn't add a block */
 export default class ImageBlock extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
     return (
-      <Block {...this.props}>
-      </Block>
+      <EditorBlock {...this.props} />
     )
   }
 }
