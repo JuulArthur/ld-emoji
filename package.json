@@ -1,6 +1,6 @@
 {
   "name": "ld-emoji",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Last Draft emoji plugin",
   "main": "lib/emoji/plugin.js",
   "scripts": {
