@@ -37,14 +37,13 @@ export default class extends Component {
       )
     }
 
-
     onChange(EditorState.push(editorState, contentState, 'insert-characters'))
     this.setState({ showModal: false })
   }
 
   renderEmojiModal() {
     return (
-      <Picker onEmojiSelected={::this.addEmoji} />
+      <Picker onEmojiSelected={::this.addEmoji} toggleColorPick={::this.toggleColorPick} />
     )
   }
 
@@ -53,9 +52,9 @@ export default class extends Component {
     this.setState({ showModal: true })
   }
 
-  onCloseButtonClick (e) {
-    e.preventDefault()
-    this.setState({ showModal: false })
+
+  toggleColorPick (e) {
+    this.setState({ showModal: !this.state.showModal })
   }
 
   render () {
@@ -73,26 +72,6 @@ export default class extends Component {
     )
   }
 }
-
-const Emoji = styled.span`
-  margin: 2.5px;
-  height: 24px;
-  width: 24px;
-  cursor: pointer;
-  font-size: 22px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
-const EmojiCloseIcon = styled.span`
-  cursor: pointer;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transform: scale(0.8);
-  color: black;
-`
 
 const EmojiIcon = styled.svg`
   transform: scale(0.8);
