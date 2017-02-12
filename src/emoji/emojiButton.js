@@ -8,16 +8,7 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import { Modifier, EditorState } from 'draft-js'
 import styled from 'styled-components'
-
-const EMOJIS = ['😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌',
-  '🤓', '😛', '😜', '😠', '😇', '😷', '😈', '👻', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '🙈', '🙉', '🙊',
-  '👼', '👮', '🕵', '💂', '👳', '🎅', '👸', '👰', '👲', '🙍', '🙇', '🚶', '🏃', '💃',
-  '⛷', '🏂', '🏌', '🏄', '🚣', '🏊', '⛹', '🏋', '🚴', '👫', '💪', '👈', '👉', '👉', '👆', '🖕', '👇',
-  '🖖', '🤘', '🖐', '👌', '👍', '👎', '✊', '👊', '👏', '🙌', '🙏', '🐵', '🐶',
-  '🐇', '🐥', '🐸', '🐌', '🐛', '🐜', '🐝', '🍉', '🍄', '🍔', '🍤', '🍨', '🍪', '🎂', '🍰', '🍾', '🍷', '🍸',
-  '🍺', '🌍', '🚑', '⏰', '🌙', '🌝', '🌞', '⭐', '🌟', '🌠', '🌨', '🌩', '⛄', '🔥', '🎄', '🎈', '🎉',
-  '🎊', '🎁', '🎗', '🏀', '🏈', '🎲', '🔇', '🔈', '📣', '🔔', '🎵', '🎷',
-  '💰', '🖊', '📅', '✅', '❎', '💯']
+import Picker from './Picker'
 
 export default class extends Component {
   constructor (props) {
@@ -25,7 +16,7 @@ export default class extends Component {
     this.state = { showModal: false }
   }
 
-  addEmoji (e) {
+  addEmoji (emoji) {
     const { editorState, onChange } = this.props
 
     const selection = editorState.getSelection()
@@ -34,14 +25,14 @@ export default class extends Component {
       contentState = Modifier.insertText(
         editorState.getCurrentContent(),
         editorState.getSelection(),
-        `${e.target.innerHTML}`,
+        emoji,
         editorState.getCurrentInlineStyle(),
       )
     } else {
       contentState = Modifier.replaceText(
         editorState.getCurrentContent(),
         editorState.getSelection(),
-        `${e.target.innerHTML}`,
+        emoji,
         editorState.getCurrentInlineStyle(),
       )
     }
@@ -53,25 +44,7 @@ export default class extends Component {
 
   renderEmojiModal() {
     return (
-      <EmojiModal onClick={this.stopPropagation} className='ld-emoji-modal'>
-        <EmojiCloseIcon onClick={::this.onCloseButtonClick} className='ld-emoji-close-icon'>
-          <svg width='24' height='24' viewBox='0 0 24 24' className='ld-button-close'>
-            <g fill='currentColor' fillRule='evenodd'>
-              <path d='M16.95 5.636l1.414 1.414L7.05 18.364 5.636 16.95z' />
-              <path d='M16.95 18.364l1.414-1.414L7.05 5.636 5.636 7.05z' />
-            </g>
-          </svg>
-        </EmojiCloseIcon>
-        {
-          EMOJIS.map((emoji, index) => (
-            <Emoji
-              className='ld-emoji'
-              key={index}
-              role="presentation"
-              onClick={::this.addEmoji}
-            >{emoji}</Emoji>))
-        }
-      </EmojiModal>
+      <Picker onEmojiSelected={::this.addEmoji} />
     )
   }
 
@@ -100,21 +73,6 @@ export default class extends Component {
     )
   }
 }
-
-const EmojiModal = styled.div`
-  position: absolute;
-  left: 2.5rem;
-  margin-top: -2.4rem;
-  display: flex;
-  flex-wrap: wrap;
-  width: 330px;
-  border: 1px solid #F1F1F1;
-  padding: 15px;
-  border-radius: 2px;
-  z-index: 100;
-  background: white;
-  box-shadow: 3px 3px 5px #BFBDBD;
-`
 
 const Emoji = styled.span`
   margin: 2.5px;
