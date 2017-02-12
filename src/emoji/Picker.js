@@ -56,7 +56,6 @@ export default class extends Component {
   onEmojiSelect (e) {
     let emoji = e.target.innerHTML
     this.props.onEmojiSelected(emoji)
-    //this.setState({ show: !this.state.show })
   }
 
   renderTabs () {
@@ -145,7 +144,6 @@ const EmojiWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 0.8rem;
-  overflow-x: scroll;
   border-radius: 2px;
 `
 
