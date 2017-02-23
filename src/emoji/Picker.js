@@ -156,7 +156,6 @@ const EmojiWrapper = styled.div`
   align-items: baseline;
   float: left;
   width: 85%;
-  border-left: 1px solid rgba(0, 0, 0, 0.1);
 `
 
 const Emoji = styled.span`
@@ -176,6 +175,7 @@ const Tabs = styled.div`
   float: left;
   width: 15%;
   height: 100%;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
 `
 
 const Title = styled.p`
