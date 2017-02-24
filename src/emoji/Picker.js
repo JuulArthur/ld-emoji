@@ -14,7 +14,8 @@ export default class extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      emojis: PEOPLE_EMOJIS
+      emojis: PEOPLE_EMOJIS,
+      emojiCategory: 'PEOPLE_EMOJIS'
     }
   }
 
@@ -28,25 +29,25 @@ export default class extends Component {
   toggleEmojis (emoji) {
     switch (emoji) {
       case 'PEOPLE_EMOJIS':
-        this.setState({emojis: PEOPLE_EMOJIS})
+        this.setState({emojis: PEOPLE_EMOJIS, emojiCategory: 'PEOPLE_EMOJIS'})
         break;
       case 'ANIMALS_NATURE_EMOJIS':
-        this.setState({emojis: ANIMALS_NATURE_EMOJIS})
+        this.setState({emojis: ANIMALS_NATURE_EMOJIS, emojiCategory: 'ANIMALS_NATURE_EMOJIS'})
         break;
       case 'FOOD_SPORTS_EMOJIS':
-        this.setState({emojis: FOOD_SPORTS_EMOJIS})
+        this.setState({emojis: FOOD_SPORTS_EMOJIS, emojiCategory: 'FOOD_SPORTS_EMOJIS'})
         break;
       case 'TRAVEL_PLACES_EMOJIS':
-        this.setState({emojis: TRAVEL_PLACES_EMOJIS})
+        this.setState({emojis: TRAVEL_PLACES_EMOJIS, emojiCategory: 'TRAVEL_PLACES_EMOJIS'})
         break;
       case 'OBJECTS_EMOJIS':
-        this.setState({emojis: OBJECTS_EMOJIS})
+        this.setState({emojis: OBJECTS_EMOJIS, emojiCategory: 'OBJECTS_EMOJIS'})
         break;
       case 'SYMBOLS_FLAGS_EMOJIS':
-        this.setState({emojis: SYMBOLS_FLAGS_EMOJIS})
+        this.setState({emojis: SYMBOLS_FLAGS_EMOJIS, emojiCategory: 'SYMBOLS_FLAGS_EMOJIS'})
         break;
       default:
-        this.setState({emojis: PEOPLE_EMOJIS})
+        this.setState({emojis: PEOPLE_EMOJIS, emojiCategory: 'PEOPLE_EMOJIS'})
     }
   }
 
@@ -56,25 +57,32 @@ export default class extends Component {
   }
 
   renderTabs () {
+    const {emojiCategory} = this.state
     return (
       <Tabs>
         <Title
+          selected={emojiCategory === 'PEOPLE_EMOJIS'}
           onClick={() => {this.toggleEmojis('PEOPLE_EMOJIS')}}
           dangerouslySetInnerHTML={{__html: emojione.unicodeToImage('😀')}} />
 
         <Title
+          selected={emojiCategory === 'ANIMALS_NATURE_EMOJIS'}
           onClick={() => {this.toggleEmojis('ANIMALS_NATURE_EMOJIS')}}
           dangerouslySetInnerHTML={{__html: emojione.unicodeToImage('🦊')}} />
         <Title
+          selected={emojiCategory === 'FOOD_SPORTS_EMOJIS'}
           onClick={() => {this.toggleEmojis('FOOD_SPORTS_EMOJIS')}}
           dangerouslySetInnerHTML={{__html: emojione.unicodeToImage('🍏')}} />
         <Title
+          selected={emojiCategory === 'TRAVEL_PLACES_EMOJIS'}
           onClick={() => {this.toggleEmojis('TRAVEL_PLACES_EMOJIS')}}
           dangerouslySetInnerHTML={{__html: emojione.unicodeToImage('🚗')}} />
         <Title
+          selected={emojiCategory === 'OBJECTS_EMOJIS'}
           onClick={() => {this.toggleEmojis('OBJECTS_EMOJIS')}}
           dangerouslySetInnerHTML={{__html: emojione.unicodeToImage('💎')}} />
         <Title
+          selected={emojiCategory === 'SYMBOLS_FLAGS_EMOJIS'}
           onClick={() => {this.toggleEmojis('SYMBOLS_FLAGS_EMOJIS')}}
           dangerouslySetInnerHTML={{__html: emojione.unicodeToImage('❤️')}} />
       </Tabs>
@@ -165,8 +173,8 @@ const Emoji = styled.span`
   align-items: center;
   padding: 0.21rem;
   img {
-    height: 16px;
-    width: 16px;
+    height: 16px !important;
+    width: 16px !important;
   }
 `
 
@@ -179,17 +187,15 @@ const Tabs = styled.div`
 `
 
 const Title = styled.p`
-  padding: 1rem;
+  padding-left: 0.35rem;
+  padding: 0.8rem
   margin: 0;
   cursor: pointer;
 
   img {
-    height: 16px;
-    width: 16px;
-  }
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.1);
+    opacity: ${props => props.selected ? '1' : '0.5'};
+    height: 24px !important;
+    width: 24px !important;
   }
 `
 
