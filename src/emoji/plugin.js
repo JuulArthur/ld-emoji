@@ -4,11 +4,11 @@
  * License: MIT
  */
 
-import emojiButton from './emojiButton'
-import emojiBlock from './emojiBlock'
+import EmojiButton from './EmojiButton'
+import EmojiAutocomplete from './Autocomplete/EmojiAutocomplete'
 
 export default {
   type: 'emoji',
-  button: emojiButton,
-  block: emojiBlock
+  button: EmojiButton,
+  autocomplete: EmojiAutocomplete
 }
