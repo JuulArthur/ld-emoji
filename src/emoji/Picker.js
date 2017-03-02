@@ -21,8 +21,7 @@ export default class extends Component {
 
   static get propTypes () {
     return {
-      onEmojiSelected: React.PropTypes.func.isRequired,
-      toggleColorPick: React.PropTypes.func.isRequired
+      onSelected: React.PropTypes.func.isRequired,
     }
   }
 
@@ -53,7 +52,7 @@ export default class extends Component {
 
   onEmojiSelect (e) {
     let emoji = e.target.alt
-    this.props.onEmojiSelected(emoji)
+    this.props.onSelected(emoji)
   }
 
   renderTabs () {
@@ -89,59 +88,50 @@ export default class extends Component {
     )
   }
 
-  renderClose () {
-    return (
-      <EmojiCloseIcon onClick={::this.props.toggleColorPick}>
-        <svg width='24' height='24' viewBox='0 0 24 24'>
-          <g fill='currentColor' fillRule='evenodd'>
-            <path d='M16.95 5.636l1.414 1.414L7.05 18.364 5.636 16.95z' />
-            <path d='M16.95 18.364l1.414-1.414L7.05 5.636 5.636 7.05z' />
-          </g>
-        </svg>
-      </EmojiCloseIcon>
-    )
-  }
-
   render() {
     const {emojis} = this.state
     return (
-      <Wrapper>
-        <EmojiPickerWrapper>
-          {this.renderTabs()}
-          {this.renderClose()}
-          <EmojiWrapper>
-            {
-              emojis.map((emoji, index) => (
-                <Emoji
-                  className='ld-emoji'
-                  key={index}
-                  role='presentation'
-                  onClick={::this.onEmojiSelect}
-                  dangerouslySetInnerHTML={{__html: emojione.unicodeToImage(emoji)}} />
-              ))
-            }
-          </EmojiWrapper>
-        </EmojiPickerWrapper>
-      </Wrapper>
+      <EmojiPickerWrapper>
+        {this.renderTabs()}
+
+        <CloseWrapper className='ld-emoji-close-button' onClick={this.props.closeModal}>
+          <Close width='24' height='24' viewBox='0 0 24 24' className='ld-button-close'>
+            <g fill='currentColor' fillRule='evenodd'>
+              <path d='M16.95 5.636l1.414 1.414L7.05 18.364 5.636 16.95z' />
+              <path d='M16.95 18.364l1.414-1.414L7.05 5.636 5.636 7.05z' />
+            </g>
+          </Close>
+        </CloseWrapper>
+
+        <EmojiWrapper>
+          {
+            emojis.map((emoji, index) => (
+              <Emoji
+                className='ld-emoji'
+                key={index}
+                role='presentation'
+                onClick={::this.onEmojiSelect}
+                dangerouslySetInnerHTML={{__html: emojione.unicodeToImage(emoji)}} />
+            ))
+          }
+        </EmojiWrapper>
+      </EmojiPickerWrapper>
     )
   }
 }
-
-const Wrapper = styled.div`
-  position: relative;
-`
 
 const EmojiPickerWrapper = styled.div`
   position: absolute;
   margin-top: 1rem;
   border: 1px solid #F1F1F1;
   border-radius: 2px;
-  background: white;
-  box-shadow: 3px 3px 5px #BFBDBD;
+  background-color: inherit;
+  box-shadow: 0 1px 18px 0 rgba(0, 0, 0, 0.3);
   width: 340px;
   height: 350px;
   overflow-y: scroll;
   z-index: 100;
+  margin-top: -3rem;
 `
 
 const EmojiPicker = styled.div`
@@ -160,6 +150,8 @@ const EmojiWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 0.8rem;
+  padding-top: 0;
+  margin-top: -0.8rem;
   border-radius: 2px;
   align-items: baseline;
   float: left;
@@ -199,11 +191,19 @@ const Title = styled.p`
   }
 `
 
-const EmojiCloseIcon = styled.span`
+const CloseWrapper = styled.div`
+  padding: 0;
   cursor: pointer;
-  position: absolute;
-  right: 2px;
-  top: 12px;
-  transform: scale(0.8);
-  color: black;
+  border: 0;
+  background: transparent;
+  color: #ccc;
+
+  &:hover {
+    color: #9d1d20;
+  }
+`
+
+const Close = styled.svg`
+  display: block;
+  margin: 0 0 0 auto;
 `

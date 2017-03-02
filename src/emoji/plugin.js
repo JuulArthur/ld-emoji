@@ -6,9 +6,11 @@
 
 import EmojiButton from './EmojiButton'
 import EmojiAutocomplete from './Autocomplete/EmojiAutocomplete'
+import EmojiModal from './EmojiModal'
 
 export default {
   type: 'emoji',
   button: EmojiButton,
-  autocomplete: EmojiAutocomplete
+  autocomplete: EmojiAutocomplete,
+  modal: EmojiModal
 }
