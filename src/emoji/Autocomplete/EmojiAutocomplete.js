@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react'
-import {EditorState, Modifier, Entity, SelectionState, getVisibleSelectionRect} from 'draft-js'
+import {EditorState, Modifier, SelectionState, getVisibleSelectionRect} from 'draft-js'
 import styled from 'styled-components'
 import Autocomplete from './Autocomplete'
 

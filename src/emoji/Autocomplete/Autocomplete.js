@@ -33,17 +33,17 @@ export default class extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      foundUsers: []
+      foundEmojis: []
     }
   }
 
   componentDidMount() {
-    this.findUsers()
+    this.findEmojis()
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.searchValue !== this.props.searchValue) {
-      this.findUsers()
+      this.findEmojis()
     }
   }
 
@@ -53,18 +53,18 @@ export default class extends Component {
     }
   }
 
-  findUsers () {
+  findEmojis () {
     const {searchValue, searchKey} = this.props
 
-    let users = SearchItemInArrayObjects(EMOJIS, searchValue, searchKey)
-    this.setState({foundUsers: users})
+    let emojis = SearchItemInArrayObjects(EMOJIS, searchValue, searchKey)
+    this.setState({foundEmojis: emojis})
   }
 
-  renderUsers () {
-    const {foundUsers} = this.state
+  renderEmojis () {
+    const {foundEmojis} = this.state
     const {searchValue} = this.props
 
-    return foundUsers.map((item, i) => {
+    return foundEmojis.map((item, i) => {
       let name = item.name
       return (
         <ListItem key={i} onClick={() => this.selectAutoComplete(item)}>
@@ -75,14 +75,14 @@ export default class extends Component {
   }
 
   render() {
-    const {searchValue} = this.props
-    let menuStyle = { border: '1px solid #b7b7b7' }
-    if (searchValue.length < 1) { menuStyle = { border: 'none' } }
+    const {foundEmojis} = this.state
+    let menuStyle = { border: 'none' }
+    if (foundEmojis.length) { menuStyle = { border: '1px solid #b7b7b7' } }
 
     return (
       <Search>
         <Menu style={menuStyle}>
-          <List>{this.renderUsers()}</List>
+          <List>{this.renderEmojis()}</List>
         </Menu>
       </Search>
     )
