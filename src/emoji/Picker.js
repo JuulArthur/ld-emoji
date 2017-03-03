@@ -129,7 +129,6 @@ const EmojiPickerWrapper = styled.div`
   box-shadow: 0 1px 18px 0 rgba(0, 0, 0, 0.3);
   width: 340px;
   height: 350px;
-  overflow-y: scroll;
   z-index: 100;
   margin-top: -3rem;
 `
@@ -151,7 +150,7 @@ const EmojiWrapper = styled.div`
   flex-wrap: wrap;
   padding: 0.8rem;
   padding-top: 0;
-  margin-top: -0.8rem;
+  margin-top: 1rem;
   border-radius: 2px;
   align-items: baseline;
   float: left;
@@ -192,7 +191,9 @@ const Title = styled.p`
 `
 
 const CloseWrapper = styled.div`
-  padding: 0;
+  position: absolute;
+  top: 1rem;
+  right: 2px;
   cursor: pointer;
   border: 0;
   background: transparent;
@@ -204,6 +205,4 @@ const CloseWrapper = styled.div`
 `
 
 const Close = styled.svg`
-  display: block;
-  margin: 0 0 0 auto;
 `
