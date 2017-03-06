@@ -104,7 +104,7 @@ export default class extends Component {
     }
 
     return (
-      <EmojiListWrapper style={menuStyle} className='ld-emoji-list-wrapper'>
+      <EmojiListWrapper style={menuStyle} className='ld-emoji-wrapper'>
         <div style={{position: 'absolute', bottom: '0'}}>
           <EmojiList className='ld-emoji-list'>
             {

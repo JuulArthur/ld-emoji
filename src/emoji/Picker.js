@@ -58,29 +58,35 @@ export default class extends Component {
   renderTabs () {
     const {emojiCategory} = this.state
     return (
-      <Tabs>
+      <Tabs className='emoji-picker-tabs'>
         <Title
+          className='emoji-picker-tab-title'
           selected={emojiCategory === 'PEOPLE_EMOJIS'}
           onClick={() => {this.toggleEmojis('PEOPLE_EMOJIS')}}
           dangerouslySetInnerHTML={{__html: emojione.unicodeToImage('😀')}} />
 
         <Title
+          className='emoji-picker-tab-title'
           selected={emojiCategory === 'ANIMALS_NATURE_EMOJIS'}
           onClick={() => {this.toggleEmojis('ANIMALS_NATURE_EMOJIS')}}
           dangerouslySetInnerHTML={{__html: emojione.unicodeToImage('🦊')}} />
         <Title
+          className='emoji-picker-tab-title'
           selected={emojiCategory === 'FOOD_SPORTS_EMOJIS'}
           onClick={() => {this.toggleEmojis('FOOD_SPORTS_EMOJIS')}}
           dangerouslySetInnerHTML={{__html: emojione.unicodeToImage('🍏')}} />
         <Title
+          className='emoji-picker-tab-title'
           selected={emojiCategory === 'TRAVEL_PLACES_EMOJIS'}
           onClick={() => {this.toggleEmojis('TRAVEL_PLACES_EMOJIS')}}
           dangerouslySetInnerHTML={{__html: emojione.unicodeToImage('🚗')}} />
         <Title
+          className='emoji-picker-tab-title'
           selected={emojiCategory === 'OBJECTS_EMOJIS'}
           onClick={() => {this.toggleEmojis('OBJECTS_EMOJIS')}}
           dangerouslySetInnerHTML={{__html: emojione.unicodeToImage('💎')}} />
         <Title
+          className='emoji-picker-tab-title'
           selected={emojiCategory === 'SYMBOLS_FLAGS_EMOJIS'}
           onClick={() => {this.toggleEmojis('SYMBOLS_FLAGS_EMOJIS')}}
           dangerouslySetInnerHTML={{__html: emojione.unicodeToImage('❤️')}} />
@@ -91,11 +97,11 @@ export default class extends Component {
   render() {
     const {emojis} = this.state
     return (
-      <EmojiPickerWrapper>
+      <EmojiPickerWrapper className='ld-emoji-picker-wrapper-outer'>
         {this.renderTabs()}
 
-        <CloseWrapper className='ld-emoji-close-button' onClick={this.props.closeModal}>
-          <Close width='24' height='24' viewBox='0 0 24 24' className='ld-button-close'>
+        <CloseWrapper className='ld-emoji-button-close-wrapper' onClick={this.props.closeModal}>
+          <Close width='24' height='24' viewBox='0 0 24 24' className='ld-emoji-button-close'>
             <g fill='currentColor' fillRule='evenodd'>
               <path d='M16.95 5.636l1.414 1.414L7.05 18.364 5.636 16.95z' />
               <path d='M16.95 18.364l1.414-1.414L7.05 5.636 5.636 7.05z' />
@@ -103,11 +109,11 @@ export default class extends Component {
           </Close>
         </CloseWrapper>
 
-        <EmojiWrapper>
+        <EmojiWrapper className='ld-emoji-picker-wrapper'>
           {
             emojis.map((emoji, index) => (
               <Emoji
-                className='ld-emoji'
+                className='ld-emoji-picker-item'
                 key={index}
                 role='presentation'
                 onClick={::this.onEmojiSelect}

@@ -36,5 +36,32 @@ export default class ExampleEditor extends Component {
     )
   }
 }
+```
 
+## Styles
+
+Last Draft plugins use styled-components 💅 for the base styling.
+
+## Custom Styles with CSS
+
+You can also add custom css to override the base styling with the following class names specified below:
+
+```css
+.emoji-modal-wrapper {}
+.emoji-button {}
+.ld-emoji-wrapper {}
+.ld-emoji {}
+.ld-emoji-list {}
+.ld-emoji-autocomplete {}
+.ld-emoji-menu {}
+.ld-emoji-menu-list {}
+.ld-emoji-item {}
+.ld-emoji-character {}
+.ld-emoji-picker-wrapper-outer {}
+.ld-emoji-picker-wrapper {}
+.ld-emoji-picker-item {}
+.ld-emoji-button-close-wrapper {}
+.ld-emoji-button-close {}
+.emoji-picker-tabs {}
+.emoji-picker-tab-title {}
 ```

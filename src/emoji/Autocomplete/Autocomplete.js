@@ -67,8 +67,8 @@ export default class extends Component {
     return foundEmojis.map((item, i) => {
       let name = item.name
       return (
-        <ListItem key={i} onClick={() => this.selectAutoComplete(item)}>
-          <EmojiItem>{item.character}</EmojiItem>
+        <ListItem className='ld-emoji-item' key={i} onClick={() => this.selectAutoComplete(item)}>
+          <EmojiItem className='ld-emoji-character'>{item.character}</EmojiItem>
         </ListItem>
       )
     })
@@ -80,9 +80,9 @@ export default class extends Component {
     if (foundEmojis.length) { menuStyle = { border: '1px solid #b7b7b7' } }
 
     return (
-      <Search>
-        <Menu style={menuStyle}>
-          <List>{this.renderEmojis()}</List>
+      <Search className='ld-emoji-autocomplete'>
+        <Menu style={menuStyle} className='ld-emoji-menu'>
+          <List className='ld-emoji-menu-list'>{this.renderEmojis()}</List>
         </Menu>
       </Search>
     )
