@@ -51,7 +51,7 @@ export default class extends Component {
   }
 
   onEmojiSelect (e) {
-    let emoji = e.target.alt
+    let emoji = e.target
     this.props.onSelected(emoji)
   }
 
